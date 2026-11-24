@@ -1,6 +1,9 @@
-# TiendaJm
-
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.3.0.
+# Tienda J&m
+Estudiantes:
+ 1. Ayaviri Ibarra Cesar
+ 2. Saravia Magne Ayelen
+ 
+ This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.3.0.
 
 ## Development server
 

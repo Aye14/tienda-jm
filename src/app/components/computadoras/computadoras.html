@@ -1,0 +1,13 @@
+<section class="contenedor">
+  <h2>Artículos de Computadoras</h2>
+  <p>Periféricos, almacenamiento y accesorios para tu PC o laptop.</p>
+
+  <div class="grid-productos">
+    @for (item of productosComputadoras; track item.id) {
+      <app-tarjeta-producto
+        [producto]="item"
+        (agregarAlCarrito)="manejarAgregarCarrito($event)">
+      </app-tarjeta-producto>
+    }
+  </div>
+</section>

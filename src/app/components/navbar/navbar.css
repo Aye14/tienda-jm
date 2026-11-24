@@ -1,0 +1,29 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0f172a;
+  color: white;
+  padding: 15px 30px;
+}
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.enlaces {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+.enlaces a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: 500;
+}
+.enlaces a:hover, .enlaces a.activo {
+  color: #38bdf8;
+  border-bottom: 2px solid #38bdf8;
+  padding-bottom: 4px;
+}

@@ -1,0 +1,13 @@
+<section class="contenedor">
+  <h2>Accesorios para Celulares</h2>
+  <p>Cargadores, cables, fundas y protección para tu smartphone.</p>
+
+  <div class="grid-productos">
+    @for (item of productosCelulares; track item.id) {
+      <app-tarjeta-producto
+        [producto]="item"
+        (agregarAlCarrito)="manejarAgregarCarrito($event)">
+      </app-tarjeta-producto>
+    }
+  </div>
+</section>
