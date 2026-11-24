@@ -1,11 +1,15 @@
-<div class="tarjeta">
+<div
+  class="tarjeta"
+  [appDestacarOferta]="producto.enOferta"
+  [stock]="producto.stock">
   <img [src]="producto.imagen" [alt]="producto.nombre" />
   <div class="contenido">
-    <h3>{{ producto.nombre }}</h3>
+    <h3>{{ producto.nombre | uppercase }}</h3>
     <p class="descripcion">{{ producto.descripcion }}</p>
-    <p class="precio">Precio: Bs. {{ producto.precio }}</p>
+    <p class="precio">Precio: {{ producto.precio | monedaBoliviana }}</p>
     <p class="stock">Stock disponible: {{ producto.stock }} unid.</p>
-    
+    <small>Actualizado: {{ fechaConsulta | date:'dd/MM/yyyy' }}</small>
+
     <button (click)="onAgregar()">Agregar al carrito</button>
   </div>
 </div>

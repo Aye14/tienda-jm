@@ -9,7 +9,7 @@ Proyecto académico desarrollado en Angular sin plantillas externas, enfocado ex
 ## Alcance del proyecto
 - Venta de artículos de computadoras (periféricos, almacenamiento, audio, etc.).
 - Venta de accesorios de celulares (cargadores, cables, fundas, protectores, etc.).
-- No incluye servicios de reparación de equipos ni instalación de juegos.
+
 
 ## Ejecución del proyecto
 ```bash

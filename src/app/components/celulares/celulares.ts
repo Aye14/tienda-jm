@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Producto, ProductosService } from '../../services/productos';
+import { IndexeddbService } from '../../services/indexeddb';
 import { TarjetaProducto } from '../tarjeta-producto/tarjeta-producto';
 
 @Component({
@@ -11,14 +12,15 @@ import { TarjetaProducto } from '../tarjeta-producto/tarjeta-producto';
 })
 export class Celulares implements OnInit {
   private productosService = inject(ProductosService);
+  private indexeddbService = inject(IndexeddbService);
   productosCelulares: Producto[] = [];
 
   ngOnInit(): void {
     this.productosCelulares = this.productosService.obtenerPorCategoria('celulares');
   }
 
-  manejarAgregarCarrito(producto: Producto): void {
-    // Aquí César conectará luego el guardado en IndexedDB
-    alert(`Producto seleccionado: ${producto.nombre} (Bs. ${producto.precio})`);
+  async manejarAgregarCarrito(producto: Producto): Promise<void> {
+    await this.indexeddbService.agregarProducto(producto);
+    alert(`"${producto.nombre}" guardado en el carrito (IndexedDB).`);
   }
 }

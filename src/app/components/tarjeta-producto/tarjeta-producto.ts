@@ -1,19 +1,21 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DatePipe, UpperCasePipe } from '@angular/common';
 import { Producto } from '../../services/productos';
+import { MonedaBolivianaPipe } from '../../pipes/moneda-boliviana-pipe';
+import { DestacarOferta } from '../../directives/destacar-oferta';
 
 @Component({
   selector: 'app-tarjeta-producto',
   standalone: true,
-  imports: [],
+  imports: [UpperCasePipe, DatePipe, MonedaBolivianaPipe, DestacarOferta],
   templateUrl: './tarjeta-producto.html',
   styleUrl: './tarjeta-producto.css'
 })
 export class TarjetaProducto {
-  // Recibe el producto del componente padre
   @Input({ required: true }) producto!: Producto;
-
-  // Envía el producto seleccionado al componente padre
   @Output() agregarAlCarrito = new EventEmitter<Producto>();
+
+  fechaConsulta = new Date();
 
   onAgregar(): void {
     this.agregarAlCarrito.emit(this.producto);

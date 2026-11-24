@@ -1,1 +1,27 @@
-<p>carrito works!</p>
+<section style="max-width: 900px; margin: 20px auto; padding: 0 15px;">
+  <h2>Carrito de Compras (IndexedDB)</h2>
+
+  @if (items.length === 0) {
+    <p>Tu carrito está vacío.</p>
+  } @else {
+    <ul style="list-style: none; padding: 0;">
+      @for (item of items; track item.carritoId) {
+        <li style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #e2e8f0;">
+          <div>
+            <strong>{{ item.nombre | uppercase }}</strong> — {{ item.precio | monedaBoliviana }}
+          </div>
+          <button (click)="eliminar(item.carritoId)" style="background: #dc2626; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">
+            Eliminar
+          </button>
+        </li>
+      }
+    </ul>
+
+    <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+      <h3>Total: {{ total | monedaBoliviana }}</h3>
+      <button (click)="vaciar()" style="background: #334155; color: white; border: none; padding: 10px 16px; border-radius: 5px; cursor: pointer;">
+        Vaciar carrito
+      </button>
+    </div>
+  }
+</section>
