@@ -1,62 +1,17 @@
-# Tienda J&m
-Estudiantes:
- 1. Ayaviri Ibarra Cesar
- 2. Saravia Magne Ayelen
- 
- This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.3.0.
+# Tienda J&M — Venta de Artículos de Computadoras y Accesorios de Celulares
 
-## Development server
+Proyecto académico desarrollado en Angular sin plantillas externas, enfocado exclusivamente en la venta de productos de cómputo y accesorios móviles.
 
-To start a local development server, run:
+## Integrantes
+- Ayelen Brenda Saravia Magne
+- Cesar Emilio Ayaviri Ibarra
 
+## Alcance del proyecto
+- Venta de artículos de computadoras (periféricos, almacenamiento, audio, etc.).
+- Venta de accesorios de celulares (cargadores, cables, fundas, protectores, etc.).
+- No incluye servicios de reparación de equipos ni instalación de juegos.
+
+## Ejecución del proyecto
 ```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+npm install
+ng serve --open
