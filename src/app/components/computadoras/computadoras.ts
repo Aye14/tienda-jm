@@ -19,8 +19,8 @@ export class Computadoras implements OnInit {
     this.productosComputadoras = this.productosService.obtenerPorCategoria('computadoras');
   }
 
-  async manejarAgregarCarrito(producto: Producto): Promise<void> {
-    await this.indexeddbService.agregarProducto(producto);
-    alert(`"${producto.nombre}" guardado en el carrito (IndexedDB).`);
-  }
+ async manejarAgregarCarrito(producto: Producto): Promise<void> {
+  await this.indexeddbService.agregarProducto(producto);
+  alert(`"${producto.nombre}" agregado al carrito.`);
+}
 }

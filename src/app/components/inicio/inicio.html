@@ -1,13 +1,21 @@
-<div style="text-align: center; padding: 50px 20px;">
-  <h1>Bienvenido a Tienda J&M</h1>
-  <p>Venta de artículos para computadoras y accesorios para celulares.</p>
-  <div style="margin-top: 25px; display: flex; justify-content: center; gap: 15px;">
-    <a routerLink="/computadoras" style="padding: 12px 20px; background: #2563eb; color: white; text-decoration: none; border-radius: 6px;">
+<section style="max-width: 960px; margin: 30px auto; padding: 20px; text-align: center;">
+  <img
+    [src]="logoUrl"
+    [alt]="'Logo de ' + nombreTienda"
+    style="max-width: 220px; height: auto; margin-bottom: 16px; border-radius: 8px;"
+  />
+
+  <h1>{{ nombreTienda | uppercase }}</h1>
+  <p style="font-size: 1.1rem; color: #475569; max-width: 680px; margin: 10px auto 24px;">
+    Especialistas en la venta de artículos de computadoras y accesorios de celulares.
+  </p>
+
+  <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+    <a routerLink="/computadoras" style="padding: 10px 18px; background: #0f766e; color: #fff; text-decoration: none; border-radius: 6px;">
       Ver Artículos de Computadoras
     </a>
-    <a routerLink="/celulares" style="padding: 12px 20px; background: #0f766e; color: white; text-decoration: none; border-radius: 6px;">
+    <a routerLink="/celulares" style="padding: 10px 18px; background: #1e293b; color: #fff; text-decoration: none; border-radius: 6px;">
       Ver Accesorios de Celulares
     </a>
   </div>
-</div>
- 
+</section>

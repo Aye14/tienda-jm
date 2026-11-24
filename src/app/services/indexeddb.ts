@@ -39,7 +39,6 @@ export class IndexeddbService {
       const tx = db.transaction(this.storeName, 'readwrite');
       const store = tx.objectStore(this.storeName);
 
-      // Creamos un objeto limpio sin propiedades extrañas
       const item: ItemCarrito = {
         id: producto.id,
         nombre: producto.nombre,

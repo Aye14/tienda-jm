@@ -57,10 +57,30 @@ export class ProductosService {
       descripcion: 'Audio estéreo ideal para clases virtuales, oficina y juegos.',
       imagen: '/img/auriculares-pc.jpg'
     },
+    {
+      id: 5,
+      nombre: 'Pad Mouse XL Antideslizante',
+      categoria: 'computadoras',
+      precio: 50,
+      stock: 20,
+      enOferta: true,
+      descripcion: 'Superficie amplia de tela suave con base de goma antideslizante.',
+      imagen: '/img/mouse-gamer.jpg'
+    },
+    {
+      id: 6,
+      nombre: 'Hub USB 3.0 de 4 Puertos',
+      categoria: 'computadoras',
+      precio: 75,
+      stock: 3,
+      enOferta: false,
+      descripcion: 'Expande los puertos USB de tu laptop o PC de escritorio.',
+      imagen: '/img/usb-64gb.jpg'
+    },
 
     // --- ACCESORIOS DE CELULARES ---
     {
-      id: 5,
+      id: 7,
       nombre: 'Cargador Rápido 33W Tipo C',
       categoria: 'celulares',
       precio: 95,
@@ -70,7 +90,7 @@ export class ProductosService {
       imagen: '/img/cargador-33w.jpg'
     },
     {
-      id: 6,
+      id: 8,
       nombre: 'Funda Antigolpes Transparente',
       categoria: 'celulares',
       precio: 35,
@@ -80,7 +100,7 @@ export class ProductosService {
       imagen: '/img/funda-celular.jpg'
     },
     {
-      id: 7,
+      id: 9,
       nombre: 'Vidrio Templado 9D Full Cover',
       categoria: 'celulares',
       precio: 25,
@@ -90,13 +110,33 @@ export class ProductosService {
       imagen: '/img/vidrio-templado.jpg'
     },
     {
-      id: 8,
+      id: 10,
       nombre: 'Cable Reforzado USB-C a USB-C',
       categoria: 'celulares',
       precio: 45,
       stock: 18,
       enOferta: false,
       descripcion: 'Cable trenzado de 1.5 metros para carga y transferencia de datos.',
+      imagen: '/img/cable-usbc.jpg'
+    },
+    {
+      id: 11,
+      nombre: 'Soporte de Escritorio para Celular',
+      categoria: 'celulares',
+      precio: 40,
+      stock: 14,
+      enOferta: true,
+      descripcion: 'Base ajustable antideslizante para videollamadas y carga.',
+      imagen: '/img/funda-celular.jpg'
+    },
+    {
+      id: 12,
+      nombre: 'Adaptador OTG USB a Tipo C',
+      categoria: 'celulares',
+      precio: 20,
+      stock: 5,
+      enOferta: false,
+      descripcion: 'Conecta pendrives o periféricos básicos a tu smartphone.',
       imagen: '/img/cable-usbc.jpg'
     }
   ];
