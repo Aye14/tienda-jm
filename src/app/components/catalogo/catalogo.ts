@@ -1,6 +1,8 @@
+
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ItemCarrito, Producto, ProductosService } from '../../services/productos';
 import { TarjetaProducto } from '../tarjeta-producto/tarjeta-producto';
 
@@ -12,6 +14,7 @@ import { TarjetaProducto } from '../tarjeta-producto/tarjeta-producto';
 })
 export class Catalogo implements OnInit {
   private productosService = inject(ProductosService);
+  private router = inject(Router);
   private cdr = inject(ChangeDetectorRef);
 
   productos: Producto[] = [];
@@ -84,5 +87,13 @@ export class Catalogo implements OnInit {
     await this.productosService.vaciar();
     this.mensajeCarrito = 'Carrito vaciado y stock devuelto.';
     await this.cargarTodo();
+  }
+
+  async irARegistroPedido(): Promise<void> {
+    await this.router.navigate(['/registro-pedido']);
+  }
+
+  async irACarrito(): Promise<void> {
+    await this.router.navigate(['/carrito']);
   }
 }

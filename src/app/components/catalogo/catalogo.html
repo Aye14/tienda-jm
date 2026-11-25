@@ -1,3 +1,4 @@
+html
 <div class="container py-4">
   <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
     <div>
@@ -66,9 +67,14 @@
     <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
       <h3 class="h5 mb-0">Carrito de Compras ({{ totalUnidadesCarrito }} unid.)</h3>
       @if (carrito.length > 0) {
-        <button type="button" class="btn btn-sm btn-outline-light" (click)="vaciarCarrito()">
-          Vaciar carrito
-        </button>
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-sm btn-outline-light" (click)="irACarrito()">
+            Ir al carrito
+          </button>
+          <button type="button" class="btn btn-sm btn-outline-light" (click)="vaciarCarrito()">
+            Vaciar carrito
+          </button>
+        </div>
       }
     </div>
 
@@ -108,9 +114,17 @@
           </table>
         </div>
 
-        <div class="d-flex justify-content-end align-items-center">
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3">
           <div class="fs-5 fw-bold">
             Total a pagar: <span class="text-primary">Bs. {{ totalPagarCarrito | number:'1.2-2' }}</span>
+          </div>
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-outline-secondary" (click)="irACarrito()">
+              Ir al carrito
+            </button>
+            <button type="button" class="btn btn-success" (click)="irARegistroPedido()">
+              Generar pedido
+            </button>
           </div>
         </div>
       }
