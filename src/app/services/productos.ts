@@ -25,7 +25,7 @@ export class ProductosService {
       stock: 15,
       enOferta: true,
       descripcion: 'Mouse ergonómico con 6 botones programables y sensor de 3200 DPI.',
-      imagen: 'https://via.placeholder.com/250x160?text=Mouse+Gamer'
+      imagen: '/img/mouse-gamer.jpg'
     },
     {
       id: 2,
@@ -35,7 +35,7 @@ export class ProductosService {
       stock: 4,
       enOferta: false,
       descripcion: 'Teclado mecánico switches blue, distribución en español.',
-      imagen: 'https://via.placeholder.com/250x160?text=Teclado+Mecanico'
+      imagen: '/img/teclado-mecanico.png'
     },
     {
       id: 3,
@@ -45,7 +45,7 @@ export class ProductosService {
       stock: 25,
       enOferta: true,
       descripcion: 'Almacenamiento portátil de alta velocidad en carcasa metálica.',
-      imagen: 'https://via.placeholder.com/250x160?text=USB+64GB'
+      imagen: '/img/usb-64gb.jpg'
     },
     {
       id: 4,
@@ -55,7 +55,7 @@ export class ProductosService {
       stock: 8,
       enOferta: false,
       descripcion: 'Audio estéreo ideal para clases virtuales, oficina y juegos.',
-      imagen: 'https://via.placeholder.com/250x160?text=Auriculares+PC'
+      imagen: '/img/auriculares-pc.jpg'
     },
 
     // --- ACCESORIOS DE CELULARES ---
@@ -67,7 +67,7 @@ export class ProductosService {
       stock: 12,
       enOferta: true,
       descripcion: 'Cubo de carga rápida con protección contra sobrecalentamiento.',
-      imagen: 'https://via.placeholder.com/250x160?text=Cargador+33W'
+      imagen: '/img/cargador-33w.jpg'
     },
     {
       id: 6,
@@ -77,7 +77,7 @@ export class ProductosService {
       stock: 30,
       enOferta: false,
       descripcion: 'Silicona reforzada en esquinas compatible con varios modelos.',
-      imagen: 'https://via.placeholder.com/250x160?text=Funda+Celular'
+      imagen: '/img/funda-celular.jpg'
     },
     {
       id: 7,
@@ -87,7 +87,7 @@ export class ProductosService {
       stock: 3,
       enOferta: true,
       descripcion: 'Protector de pantalla resistente a rayones e impactos.',
-      imagen: 'https://via.placeholder.com/250x160?text=Vidrio+Templado'
+      imagen: '/img/vidrio-templado.jpg'
     },
     {
       id: 8,
@@ -97,7 +97,7 @@ export class ProductosService {
       stock: 18,
       enOferta: false,
       descripcion: 'Cable trenzado de 1.5 metros para carga y transferencia de datos.',
-      imagen: 'https://via.placeholder.com/250x160?text=Cable+USB-C'
+      imagen: '/img/cable-usbc.jpg'
     }
   ];
 
