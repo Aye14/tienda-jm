@@ -1,15 +1,44 @@
 <div
-  class="tarjeta"
-  [appDestacarOferta]="producto.enOferta"
-  [stock]="producto.stock">
-  <img [src]="producto.imagen" [alt]="producto.nombre" />
-  <div class="contenido">
-    <h3>{{ producto.nombre | uppercase }}</h3>
-    <p class="descripcion">{{ producto.descripcion }}</p>
-    <p class="precio">Precio: {{ producto.precio | monedaBoliviana }}</p>
-    <p class="stock">Stock disponible: {{ producto.stock }} unid.</p>
-    <small>Actualizado: {{ fechaConsulta | date:'dd/MM/yyyy' }}</small>
+  class="card h-100 shadow-sm"
+  [ngClass]="{
+    'border-success border-2': producto.enOferta,
+    'border-warning border-2': !producto.enOferta && producto.stock <= 5
+  }"
+>
+  <img
+    [src]="producto.imagen"
+    [alt]="producto.nombre"
+    class="card-img-top"
+    style="height: 180px; object-fit: cover;"
+  />
+  <div class="card-body d-flex flex-column">
+    <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+      <h5 class="card-title mb-0">{{ producto.nombre | titlecase }}</h5>
+      <span class="badge bg-secondary">{{ producto.categoria }}</span>
+    </div>
 
-    <button (click)="onAgregar()">Agregar al carrito</button>
+    <p class="card-text text-muted small flex-grow-1">{{ producto.descripcion }}</p>
+
+    <div class="mb-2">
+      <div class="fw-bold fs-5 text-primary">Bs. {{ producto.precio | number:'1.2-2' }}</div>
+      <div class="small">
+        Stock disponible:
+        <strong [ngClass]="producto.stock <= 5 ? 'text-danger' : 'text-success'">
+          {{ producto.stock }} unid.
+        </strong>
+      </div>
+      <div class="text-muted" style="font-size: 0.78rem;">
+        Actualizado: {{ fechaConsulta | date:'dd/MM/yyyy' }}
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-primary w-100"
+      [disabled]="producto.stock === 0"
+      (click)="solicitarPedido()"
+    >
+      {{ producto.stock === 0 ? 'Sin stock' : 'Agregar al carrito' }}
+    </button>
   </div>
 </div>

@@ -1,13 +1,24 @@
-<section class="contenedor">
-  <h2>Artículos de Computadoras</h2>
-  <p>Periféricos, almacenamiento y accesorios para tu PC o laptop.</p>
+<section class="container py-4">
+  <h2 class="h3 mb-1">Artículos de Computadoras</h2>
+  <p class="text-muted mb-3">Periféricos, almacenamiento y accesorios para tu PC o laptop.</p>
 
-  <div class="grid-productos">
+  @if (mensajeCarrito) {
+  <div
+    style="background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; padding: 12px 16px; border-radius: 6px; margin-bottom: 16px;"
+    role="alert"
+  >
+    {{ mensajeCarrito }}
+  </div>
+}
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
     @for (item of productosComputadoras; track item.id) {
-      <app-tarjeta-producto
-        [producto]="item"
-        (agregarAlCarrito)="manejarAgregarCarrito($event)">
-      </app-tarjeta-producto>
+      <div class="col">
+        <app-tarjeta-producto
+          [producto]="item"
+          (agregarAlCarrito)="manejarAgregarCarrito($event)">
+        </app-tarjeta-producto>
+      </div>
     }
   </div>
 </section>

@@ -1,0 +1,119 @@
+<div class="container py-4">
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
+    <div>
+      <h2 class="h3 mb-1">Catálogo de Productos</h2>
+      <p class="text-muted mb-0">
+        Busca por nombre o descripción y filtra por categoría (stock y carrito en tiempo real).
+      </p>
+    </div>
+    <div class="d-flex gap-2">
+      <span class="badge bg-primary fs-6">
+        {{ productosFiltrados.length }} producto(s)
+      </span>
+      <span class="badge bg-success fs-6">
+        Carrito: {{ totalUnidadesCarrito }} unid.
+      </span>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-md-7">
+      <label for="buscarTexto" class="form-label fw-semibold">Buscar producto</label>
+      <input
+        id="buscarTexto"
+        type="text"
+        class="form-control"
+        placeholder="Ej. mouse, teclado, cargador, funda..."
+        [(ngModel)]="textoBusqueda"
+      />
+    </div>
+
+    <div class="col-12 col-md-5">
+      <label for="filtroCategoria" class="form-label fw-semibold">Categoría</label>
+      <select
+        id="filtroCategoria"
+        class="form-select"
+        [(ngModel)]="categoriaSeleccionada"
+      >
+        <option value="Todas">Todas las categorías</option>
+        <option value="Computadoras">Computadoras</option>
+        <option value="Celulares">Celulares</option>
+      </select>
+    </div>
+  </div>
+
+  @if (productosFiltrados.length === 0) {
+    <div class="alert alert-warning" role="alert">
+      No se encontraron productos con el criterio de búsqueda y categoría seleccionados.
+    </div>
+  } @else {
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+      @for (prod of productosFiltrados; track prod.id) {
+        <div class="col">
+          <app-tarjeta-producto
+            [producto]="prod"
+            (agregarAlCarrito)="manejarAgregarCarrito($event)">
+          </app-tarjeta-producto>
+        </div>
+      }
+    </div>
+  }
+
+  <hr class="my-5" />
+
+  <!-- Carrito integrado dentro de Catálogo -->
+  <section class="card shadow-sm">
+    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+      <h3 class="h5 mb-0">Carrito de Compras ({{ totalUnidadesCarrito }} unid.)</h3>
+      @if (carrito.length > 0) {
+        <button type="button" class="btn btn-sm btn-outline-light" (click)="vaciarCarrito()">
+          Vaciar carrito
+        </button>
+      }
+    </div>
+
+    <div class="card-body">
+      @if (carrito.length === 0) {
+        <p class="text-muted mb-0">Tu carrito está vacío. Agrega algún producto desde el catálogo.</p>
+      } @else {
+        <div class="table-responsive">
+          <table class="table align-middle mb-3">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th class="text-center">Cantidad</th>
+                <th class="text-end">Precio unit.</th>
+                <th class="text-end">Subtotal</th>
+                <th class="text-end">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of carrito; track item.id) {
+                <tr>
+                  <td class="fw-semibold">{{ item.nombre }}</td>
+                  <td class="text-center">{{ item.cantidad }}</td>
+                  <td class="text-end">Bs. {{ item.precio | number:'1.2-2' }}</td>
+                  <td class="text-end fw-semibold">Bs. {{ (item.precio * item.cantidad) | number:'1.2-2' }}</td>
+                  <td class="text-end">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-danger"
+                      (click)="quitarDelCarrito(item)">
+                      Quitar
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <div class="d-flex justify-content-end align-items-center">
+          <div class="fs-5 fw-bold">
+            Total a pagar: <span class="text-primary">Bs. {{ totalPagarCarrito | number:'1.2-2' }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+</div>

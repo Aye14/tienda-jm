@@ -1,26 +1,44 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Producto, ProductosService } from '../../services/productos';
-import { IndexeddbService } from '../../services/indexeddb';
 import { TarjetaProducto } from '../tarjeta-producto/tarjeta-producto';
 
 @Component({
   selector: 'app-computadoras',
   standalone: true,
-  imports: [TarjetaProducto],
-  templateUrl: './computadoras.html',
-  styleUrl: './computadoras.css'
+  imports: [CommonModule, TarjetaProducto],
+  templateUrl: './computadoras.html'
 })
 export class Computadoras implements OnInit {
   private productosService = inject(ProductosService);
-  private indexeddbService = inject(IndexeddbService);
-  productosComputadoras: Producto[] = [];
+  private cdr = inject(ChangeDetectorRef);
 
-  ngOnInit(): void {
-    this.productosComputadoras = this.productosService.obtenerPorCategoria('computadoras');
+  productosComputadoras: Producto[] = [];
+  mensajeCarrito = '';
+
+  async ngOnInit(): Promise<void> {
+    await this.cargarProductos();
   }
 
- async manejarAgregarCarrito(producto: Producto): Promise<void> {
-  await this.indexeddbService.agregarProducto(producto);
-  alert(`"${producto.nombre}" agregado al carrito.`);
-}
+  async cargarProductos(): Promise<void> {
+    const todos = await this.productosService.obtenerProductos();
+    this.productosComputadoras = todos.filter(
+      p => (p.categoria || '').toLowerCase() === 'computadoras'
+    );
+    this.cdr.detectChanges();
+  }
+
+  async manejarAgregarCarrito(producto: Producto): Promise<void> {
+    const res = await this.productosService.agregarAlCarritoConStock(producto, 1);
+    if (!res.ok) {
+      this.mensajeCarrito = res.mensaje;
+      alert(res.mensaje);
+      this.cdr.detectChanges();
+      return;
+    }
+
+    this.mensajeCarrito = `Se agregó "${producto.nombre}" al carrito.`;
+    alert(`Producto seleccionado: ${producto.nombre} (Bs. ${producto.precio})`);
+    await this.cargarProductos();
+  }
 }

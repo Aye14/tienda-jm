@@ -1,27 +1,56 @@
-<section style="max-width: 900px; margin: 20px auto; padding: 0 15px;">
-  <h2>Carrito de Compras (IndexedDB)</h2>
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Carrito de Compras</h2>
+    <a routerLink="/catalogo" class="btn btn-outline-primary btn-sm">Seguir comprando</a>
+  </div>
 
   @if (items.length === 0) {
-    <p>Tu carrito está vacío.</p>
+    <div class="alert alert-info">
+      Tu carrito está vacío.
+    </div>
   } @else {
-    <ul style="list-style: none; padding: 0;">
-      @for (item of items; track item.carritoId) {
-        <li style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #e2e8f0;">
-          <div>
-            <strong>{{ item.nombre | uppercase }}</strong> — {{ item.precio | monedaBoliviana }}
-          </div>
-          <button (click)="eliminar(item.carritoId)" style="background: #dc2626; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">
-            Eliminar
-          </button>
-        </li>
-      }
-    </ul>
+    <div class="table-responsive">
+      <table class="table table-bordered align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Producto</th>
+            <th>Categoría</th>
+            <th>Cantidad</th>
+            <th>Precio Unit.</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of items; track item.carritoId ?? item.id ?? $index) {
+            <tr>
+              <td>{{ item.nombre }}</td>
+              <td>{{ item.categoria || 'General' }}</td>
+              <td>{{ item.cantidad }}</td>
+              <td>Bs. {{ item.precio | number:'1.2-2' }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-danger"
+                  (click)="cancelarItem(item)">
+                  Cancelar / Devolver stock
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
 
-    <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
-      <h3>Total: {{ total | monedaBoliviana }}</h3>
-      <button (click)="vaciar()" style="background: #334155; color: white; border: none; padding: 10px 16px; border-radius: 5px; cursor: pointer;">
-        Vaciar carrito
-      </button>
+    <div class="d-flex justify-content-between align-items-center mt-3">
+      <h4 class="mb-0">Total: Bs. {{ total | number:'1.2-2' }}</h4>
+      <div class="d-flex gap-2">
+        <button type="button" class="btn btn-outline-danger" (click)="vaciar()">
+          Vaciar carrito
+        </button>
+        <a routerLink="/registro-pedido" class="btn btn-success">
+          Registrar pedido
+        </a>
+      </div>
     </div>
   }
-</section>
+</div>

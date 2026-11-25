@@ -1,13 +1,15 @@
-<section class="contenedor">
-  <h2>Accesorios para Celulares</h2>
-  <p>Cargadores, cables, fundas y protección para tu smartphone.</p>
+<section class="container py-4">
+  <h2 class="h3 mb-1">Accesorios de Celulares</h2>
+  <p class="text-muted mb-3">Cargadores, fundas, protectores y cables para tu celular.</p>
 
-  <div class="grid-productos">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
     @for (item of productosCelulares; track item.id) {
-      <app-tarjeta-producto
-        [producto]="item"
-        (agregarAlCarrito)="manejarAgregarCarrito($event)">
-      </app-tarjeta-producto>
+      <div class="col">
+        <app-tarjeta-producto
+          [producto]="item"
+          (agregarAlCarrito)="manejarAgregarCarrito($event)">
+        </app-tarjeta-producto>
+      </div>
     }
   </div>
 </section>

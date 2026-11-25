@@ -1,0 +1,155 @@
+<section class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="h3 mb-1">Registro de Pedido</h2>
+      <p class="text-muted mb-0">Valida los datos del cliente y verifica stock antes de confirmar.</p>
+    </div>
+    <a routerLink="/pedidos" class="btn btn-outline-secondary">Ver Historial</a>
+  </div>
+
+  @if (errorMsg) {
+    <div class="alert alert-danger" role="alert">{{ errorMsg }}</div>
+  }
+
+  <div class="row g-4">
+    <div class="col-12 col-lg-7">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <strong>1. Datos del Cliente</strong>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Nombre completo *</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Ej. Ayelén Saravia"
+              [(ngModel)]="clienteNombre"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Teléfono / Celular (7-8 dígitos) *</label>
+            <input
+              type="tel"
+              class="form-control"
+              placeholder="Ej. 72345678"
+              [(ngModel)]="clienteTelefono"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Dirección de entrega *</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Ej. Calle Bolívar #123"
+              [(ngModel)]="clienteDireccion"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Notas adicionales (opcional)</label>
+            <textarea
+              class="form-control"
+              rows="2"
+              placeholder="Referencia o horario de entrega..."
+              [(ngModel)]="notas"
+            ></textarea>
+          </div>
+
+          @if (!usandoCarrito) {
+            <hr />
+            <h3 class="h6 fw-bold mb-3">2. Seleccionar productos para el pedido</h3>
+            <div class="row g-2 align-items-end mb-3">
+              <div class="col-12 col-sm-7">
+                <label class="form-label small fw-semibold">Producto</label>
+                <select class="form-select" [(ngModel)]="productoSeleccionadoId">
+                  @for (prod of productosDisponibles; track prod.id) {
+                    <option [ngValue]="prod.id" [disabled]="prod.stock === 0">
+                      {{ prod.nombre }} (Stock: {{ prod.stock }} - Bs. {{ prod.precio }})
+                    </option>
+                  }
+                </select>
+              </div>
+              <div class="col-6 col-sm-2">
+                <label class="form-label small fw-semibold">Cant.</label>
+                <input
+                  type="number"
+                  min="1"
+                  class="form-control"
+                  [(ngModel)]="cantidadSeleccionada"
+                />
+              </div>
+              <div class="col-6 col-sm-3">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary w-100"
+                  (click)="agregarProductoDirecto()"
+                >
+                  + Añadir
+                </button>
+              </div>
+            </div>
+          }
+
+          <button
+            type="button"
+            class="btn btn-success w-100 mt-2"
+            [disabled]="guardando"
+            (click)="guardarPedido()"
+          >
+            {{ guardando ? 'Registrando pedido...' : 'Confirmar y Guardar Pedido' }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-5">
+      <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+          <strong>Resumen del Pedido</strong>
+          <span class="badge bg-info text-dark">
+            {{ usandoCarrito ? 'Desde Carrito' : 'Selección Directa' }}
+          </span>
+        </div>
+        <div class="card-body">
+          @if (itemsActivos.length === 0) {
+            <p class="text-muted mb-3">Aún no hay productos seleccionados.</p>
+            <a routerLink="/catalogo" class="btn btn-primary btn-sm">Ir al Catálogo</a>
+          } @else {
+            <ul class="list-group list-group-flush mb-3">
+              @for (item of itemsActivos; track item.id) {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="fw-semibold">{{ item.nombre }}</div>
+                    <small class="text-muted">
+                      {{ item.cantidad }} x Bs. {{ item.precio | number:'1.2-2' }}
+                    </small>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="fw-semibold">Bs. {{ (item.precio * item.cantidad) | number:'1.2-2' }}</span>
+                    @if (!usandoCarrito) {
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-danger"
+                        (click)="quitarItemDirecto(item.id)"
+                      >
+                        ×
+                      </button>
+                    }
+                  </div>
+                </li>
+              }
+            </ul>
+
+            <div class="d-flex justify-content-between fs-5 fw-bold">
+              <span>Total:</span>
+              <span class="text-primary">Bs. {{ total | number:'1.2-2' }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,77 @@
+<section class="container py-4">
+  <div class="mb-3">
+    <a routerLink="/pedidos" class="btn btn-outline-secondary btn-sm">← Volver al Historial</a>
+  </div>
+
+  @if (noEncontrado) {
+    <div class="alert alert-danger">No se encontró el pedido solicitado.</div>
+  } @else if (pedido) {
+    <div class="card shadow-sm">
+      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        <h2 class="h5 mb-0">Detalle del Pedido #{{ pedido.id }}</h2>
+        <span
+          class="badge"
+          [ngClass]="{
+            'bg-warning text-dark': pedido.estado === 'Pendiente',
+            'bg-success': pedido.estado === 'Completado',
+            'bg-danger': pedido.estado === 'Cancelado'
+          }"
+        >
+          {{ pedido.estado }}
+        </span>
+      </div>
+
+      <div class="card-body">
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-md-6">
+            <p class="mb-1"><strong>Cliente:</strong> {{ pedido.clienteNombre }}</p>
+            <p class="mb-1"><strong>Teléfono:</strong> {{ pedido.clienteTelefono }}</p>
+            <p class="mb-1"><strong>Dirección:</strong> {{ pedido.clienteDireccion }}</p>
+          </div>
+          <div class="col-12 col-md-6">
+            <p class="mb-1"><strong>Fecha:</strong> {{ pedido.fecha | date:'dd/MM/yyyy HH:mm' }}</p>
+            @if (pedido.notas) {
+              <p class="mb-1"><strong>Notas:</strong> {{ pedido.notas }}</p>
+            }
+          </div>
+        </div>
+
+        <h3 class="h6 fw-bold mb-2">Productos del pedido</h3>
+        <div class="table-responsive mb-3">
+          <table class="table table-bordered align-middle">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th class="text-center">Cantidad</th>
+                <th class="text-end">Precio unit.</th>
+                <th class="text-end">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of pedido.items; track item.id) {
+                <tr>
+                  <td>{{ item.nombre }}</td>
+                  <td class="text-center">{{ item.cantidad }}</td>
+                  <td class="text-end">Bs. {{ item.precio | number:'1.2-2' }}</td>
+                  <td class="text-end">Bs. {{ (item.precio * item.cantidad) | number:'1.2-2' }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3">
+          <div class="fs-5 fw-bold">
+            Total: <span class="text-primary">Bs. {{ pedido.total | number:'1.2-2' }}</span>
+          </div>
+
+          @if (pedido.estado !== 'Cancelado') {
+            <button type="button" class="btn btn-danger" (click)="cancelarPedido()">
+              Cancelar pedido y devolver stock
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</section>

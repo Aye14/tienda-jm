@@ -1,13 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { DatePipe, UpperCasePipe } from '@angular/common';
+import { DatePipe, NgClass, DecimalPipe, TitleCasePipe } from '@angular/common';
 import { Producto } from '../../services/productos';
-import { MonedaBolivianaPipe } from '../../pipes/moneda-boliviana-pipe';
-import { DestacarOferta } from '../../directives/destacar-oferta';
 
 @Component({
   selector: 'app-tarjeta-producto',
   standalone: true,
-  imports: [UpperCasePipe, DatePipe, MonedaBolivianaPipe, DestacarOferta],
+  imports: [TitleCasePipe, DatePipe, DecimalPipe, NgClass],
   templateUrl: './tarjeta-producto.html',
   styleUrl: './tarjeta-producto.css'
 })
@@ -17,7 +15,10 @@ export class TarjetaProducto {
 
   fechaConsulta = new Date();
 
-  onAgregar(): void {
+  solicitarPedido(): void {
+    if (this.producto.stock <= 0) {
+      return;
+    }
     this.agregarAlCarrito.emit(this.producto);
   }
 }

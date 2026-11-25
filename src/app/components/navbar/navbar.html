@@ -1,9 +1,31 @@
-<nav class="navbar">
-  <div class="logo">Tienda J&M</div>
-  <ul class="enlaces">
-    <li><a routerLink="/inicio" routerLinkActive="activo">Inicio</a></li>
-    <li><a routerLink="/computadoras" routerLinkActive="activo">Computadoras</a></li>
-    <li><a routerLink="/celulares" routerLinkActive="activo">Celulares</a></li>
-    <li><a routerLink="/carrito" routerLinkActive="activo">Carrito</a></li>
-  </ul>
+<nav class="navbar navbar-expand-lg navbar-dark px-4" style="background-color: #0b192c;">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" routerLink="/inicio">Tienda J&amp;M</a>
+    
+    <div class="collapse navbar-collapse show" id="navbarNav">
+      <ul class="navbar-nav ms-auto gap-2">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/inicio" routerLinkActive="active fw-semibold text-info">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/catalogo" routerLinkActive="active fw-semibold text-info">Catálogo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/computadoras" routerLinkActive="active fw-semibold text-info">Computadoras</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/celulares" routerLinkActive="active fw-semibold text-info">Celulares</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/carrito" routerLinkActive="active fw-semibold text-info">Carrito</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/registro-pedido" routerLinkActive="active fw-semibold text-info">Registro Pedido</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/pedidos" routerLinkActive="active fw-semibold text-info">Historial Pedidos</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
