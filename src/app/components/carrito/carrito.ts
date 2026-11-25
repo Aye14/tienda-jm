@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { UpperCasePipe } from '@angular/common';
 import { IndexeddbService, ItemCarrito } from '../../services/indexeddb';
 import { MonedaBolivianaPipe } from '../../pipes/moneda-boliviana-pipe';
@@ -12,6 +12,7 @@ import { MonedaBolivianaPipe } from '../../pipes/moneda-boliviana-pipe';
 })
 export class Carrito implements OnInit {
   private indexeddbService = inject(IndexeddbService);
+  private cdr = inject(ChangeDetectorRef);
   items: ItemCarrito[] = [];
 
   async ngOnInit(): Promise<void> {
@@ -20,6 +21,7 @@ export class Carrito implements OnInit {
 
   async cargarCarrito(): Promise<void> {
     this.items = await this.indexeddbService.obtenerCarrito();
+    this.cdr.detectChanges();
   }
 
   async eliminar(carritoId?: number): Promise<void> {

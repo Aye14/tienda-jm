@@ -38,11 +38,30 @@ export class IndexeddbService {
     return new Promise((resolve, reject) => {
       const tx = db.transaction(this.storeName, 'readwrite');
       const store = tx.objectStore(this.storeName);
-      const item: ItemCarrito = { ...producto, cantidad: 1 };
-      const req = store.add(item);
 
-      req.onsuccess = () => resolve();
-      req.onerror = () => reject(req.error);
+      // Creamos un objeto limpio sin propiedades extrañas
+      const item: ItemCarrito = {
+        id: producto.id,
+        nombre: producto.nombre,
+        categoria: producto.categoria,
+        precio: producto.precio,
+        stock: producto.stock,
+        enOferta: producto.enOferta,
+        descripcion: producto.descripcion,
+        imagen: producto.imagen,
+        cantidad: 1
+      };
+
+      store.add(item);
+
+      tx.oncomplete = () => {
+        db.close();
+        resolve();
+      };
+      tx.onerror = () => {
+        db.close();
+        reject(tx.error);
+      };
     });
   }
 
@@ -53,8 +72,15 @@ export class IndexeddbService {
       const store = tx.objectStore(this.storeName);
       const req = store.getAll();
 
-      req.onsuccess = () => resolve(req.result || []);
-      req.onerror = () => reject(req.error);
+      req.onsuccess = () => {
+        const resultado = req.result || [];
+        db.close();
+        resolve(resultado);
+      };
+      req.onerror = () => {
+        db.close();
+        reject(req.error);
+      };
     });
   }
 
@@ -63,10 +89,16 @@ export class IndexeddbService {
     return new Promise((resolve, reject) => {
       const tx = db.transaction(this.storeName, 'readwrite');
       const store = tx.objectStore(this.storeName);
-      const req = store.delete(carritoId);
+      store.delete(carritoId);
 
-      req.onsuccess = () => resolve();
-      req.onerror = () => reject(req.error);
+      tx.oncomplete = () => {
+        db.close();
+        resolve();
+      };
+      tx.onerror = () => {
+        db.close();
+        reject(tx.error);
+      };
     });
   }
 
@@ -75,10 +107,16 @@ export class IndexeddbService {
     return new Promise((resolve, reject) => {
       const tx = db.transaction(this.storeName, 'readwrite');
       const store = tx.objectStore(this.storeName);
-      const req = store.clear();
+      store.clear();
 
-      req.onsuccess = () => resolve();
-      req.onerror = () => reject(req.error);
+      tx.oncomplete = () => {
+        db.close();
+        resolve();
+      };
+      tx.onerror = () => {
+        db.close();
+        reject(tx.error);
+      };
     });
   }
 }
