@@ -1,1 +1,89 @@
-/* You can add global styles to this file, and also import other style files */
+/* 1. Fondo de pantalla general */
+body {
+  min-height: 100vh;
+  background: #05386b;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #5cdb95, #05386b);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #5cdb95, #05386b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  color: #0f172a;
+}
+
+/* 2. Botones principales (azul profundo #002E5D -> #2774ae) */
+.btn-primary {
+  background: #004680;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #4484BA, #004680);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #4484BA, #004680); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  border: none;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.08);
+  color: #ffffff;
+}
+
+/* 3. Botones secundarios / de acción (esmeralda -> petróleo #00c996 -> #003d4d) */
+.btn-success {
+  background: #003d4d;
+  background: -webkit-linear-gradient(to right, #00c996, #003d4d);
+  background: linear-gradient(to right, #00c996, #003d4d);
+  border: none;
+  color: #ffffff;
+}
+
+.btn-success:hover {
+  filter: brightness(1.08);
+  color: #ffffff;
+}
+/* Tarjeta con degradado azul institucional */
+.card-grad-azul {
+  background: #2774ae;
+  background: -webkit-linear-gradient(to right, #002E5D, #002E5D, #2774ae);
+  background: linear-gradient(to right, #002E5D, #002E5D, #2774ae);
+  color: #ffffff;
+}
+
+/* Tarjeta con degradado esmeralda / petróleo */
+.card-grad-esmeralda {
+  background: #003d4d;
+  background: -webkit-linear-gradient(to right, #00c996, #003d4d);
+  background: linear-gradient(to right, #00c996, #003d4d);
+  color: #ffffff;
+}
+
+/* Tarjeta clara suave con toque azul */
+.card-grad-suave {
+  background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
+  color: #0f172a;
+}
+/* Degradado esmeralda / petróleo para tarjetas */
+.tarjeta-grad-esmeralda {
+  background: #003d4d !important;
+  background: -webkit-linear-gradient(to right, #00c996, #003d4d) !important;
+  background: linear-gradient(to right, #00c996, #003d4d) !important;
+  color: #ffffff !important;
+}
+
+/* Degradado azul institucional para tarjetas */
+.tarjeta-grad-azul {
+  background: #2774ae !important;
+  background: -webkit-linear-gradient(to right, #002E5D, #002E5D, #2774ae) !important;
+  background: linear-gradient(to right, #002E5D, #002E5D, #2774ae) !important;
+  color: #ffffff !important;
+}
+
+/* Ajustes para que los textos y descripciones se lean bien sobre tarjeta degradada */
+.tarjeta-grad-esmeralda .text-muted,
+.tarjeta-grad-azul .text-muted {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+/* Tarjeta con degradado negro / carbón elegante */
+.tarjeta-grad-negro {
+  background: linear-gradient(135deg, #0b0f17 0%, #18202c 100%) !important;
+  color: #ffffff !important;
+}
+
+.tarjeta-grad-negro .text-muted {
+  color: rgba(255, 255, 255, 0.78) !important;
+}

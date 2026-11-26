@@ -1,24 +1,142 @@
-<section style="max-width: 960px; margin: 30px auto; padding: 20px; text-align: center;">
-  <img
-    [src]="logoUrl"
-    [alt]="'Logo de ' + nombreTienda"
-    style="max-width: 220px; height: auto; margin-bottom: 16px; border-radius: 8px;"
-  />
+<div class="container py-4">
+  @if (mensajeInicio) {
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ mensajeInicio }}
+      <button type="button" class="btn-close" (click)="mensajeInicio = ''" aria-label="Cerrar"></button>
+    </div>
+  }
 
-  <h1>{{ nombreTienda | uppercase }}</h1>
-  <p style="font-size: 1.1rem; color: #475569; max-width: 680px; margin: 10px auto 24px;">
-    Especialistas en la venta de artículos de computadoras y accesorios de celulares.
-  </p>
+  <!-- Banner Principal (Hero) con Logo -->
+  <section
+    class="p-4 p-md-5 mb-4 rounded-3 text-white shadow-sm"
+    style="background: #2774ae; background: -webkit-linear-gradient(to right, #002E5D, #002E5D, #2774ae); background: linear-gradient(to right, #002E5D, #002E5D, #2774ae);">
+    <div class="row align-items-center g-4">
+      <div class="col-12 col-lg-8">
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <img
+            src="img/logo-tienda-jm.jpg"
+            alt="Logo Tienda J&M"
+            class="rounded-circle bg-white p-1"
+            style="width: 64px; height: 64px; object-fit: contain;"
+          />
+          <div>
+            <span class="badge bg-warning text-dark mb-1">Tecnología y Accesorios</span>
+            <h1 class="display-5 fw-bold mb-0">Tienda J&amp;M</h1>
+          </div>
+        </div>
 
-  <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-    <a routerLink="/catalogo" style="padding: 10px 18px; background: #2563eb; color: #fff; text-decoration: none; border-radius: 6px;">
-      Ver Catálogo Completo
-    </a>
-    <a routerLink="/computadoras" style="padding: 10px 18px; background: #0f766e; color: #fff; text-decoration: none; border-radius: 6px;">
-      Ver Artículos de Computadoras
-    </a>
-    <a routerLink="/celulares" style="padding: 10px 18px; background: #1e293b; color: #fff; text-decoration: none; border-radius: 6px;">
-      Ver Accesorios de Celulares
-    </a>
-  </div>
-</section>
+        <p class="lead text-light mb-4">
+          Encuentra periféricos para computadoras, cargadores y protección para celulares, además de accesorios y mandos gaming con stock actualizado en tiempo real.
+        </p>
+
+        <div class="d-flex flex-wrap gap-2">
+          <a routerLink="/catalogo" class="btn btn-primary btn-lg">
+            Explorar Catálogo
+          </a>
+          <a routerLink="/registro-pedido" class="btn btn-outline-light btn-lg">
+            Registrar Pedido
+          </a>
+          @if (totalUnidadesCarrito > 0) {
+            <a routerLink="/carrito" class="btn btn-success btn-lg">
+              Ver Carrito ({{ totalUnidadesCarrito }})
+            </a>
+          }
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-4">
+        <div class="card bg-secondary bg-opacity-25 border-light border-opacity-25 text-white">
+          <div class="card-body">
+            <h2 class="h5 fw-bold mb-3">Compra rápida</h2>
+            <ul class="list-unstyled mb-0 small">
+              <li class="mb-2">1. Elige tus productos en el catálogo o destacados.</li>
+              <li class="mb-2">2. Revisa tu carrito y confirma tus datos.</li>
+              <li>3. Consulta o cancela tus pedidos en el historial.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categorías Principales -->
+  <section class="mb-5">
+    <h2 class="h4 fw-bold mb-3 text-white">Explora por Categoría</h2>
+    <div class="row g-3">
+      <div class="col-12 col-md-4">
+        <div class="card h-100 shadow-sm border-0 text-white" style="background-color: #0b0f17;">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <span class="badge bg-primary mb-2">Computadoras</span>
+              <h3 class="h5 fw-bold text-white">Periféricos y Oficina</h3>
+              <p class="text-white-50 small">
+                Mouse gamer, teclados mecánicos, memorias USB y auriculares con micrófono.
+              </p>
+            </div>
+            <a routerLink="/computadoras" class="btn btn-outline-light btn-sm align-self-start">
+              Ver Computadoras
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="card h-100 shadow-sm border-0 text-white" style="background-color: #0b0f17;">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <span class="badge bg-success mb-2">Celulares</span>
+              <h3 class="h5 fw-bold text-white">Carga y Protección</h3>
+              <p class="text-white-50 small">
+                Cargadores de carga rápida y fundas reforzadas antigolpes para uso diario.
+              </p>
+            </div>
+            <a routerLink="/celulares" class="btn btn-outline-light btn-sm align-self-start">
+              Ver Celulares
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="card h-100 shadow-sm border-0 text-white" style="background-color: #0b0f17;">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <span class="badge bg-warning text-dark mb-2">Accesorios y Gaming</span>
+              <h3 class="h5 fw-bold text-white">Conectividad y Consolas</h3>
+              <p class="text-white-50 small">
+                Cables HDMI 4K, adaptadores Wi-Fi Dual Band y mandos inalámbricos PS4.
+              </p>
+            </div>
+            <a routerLink="/catalogo" class="btn btn-outline-light btn-sm align-self-start">
+              Ver en Catálogo
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Productos Destacados -->
+  <section>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div>
+        <h2 class="h4 fw-bold mb-0 text-white">Productos Destacados</h2>
+        <p class="text-white-50 small mb-0">Artículos en oferta disponibles ahora mismo</p>
+      </div>
+      <a routerLink="/catalogo" class="btn btn-sm btn-light fw-semibold">
+        Ver todos
+      </a>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+      @for (prod of destacados; track prod.id) {
+        <div class="col">
+          <app-tarjeta-producto
+            [producto]="prod"
+            (agregarAlCarrito)="manejarAgregarCarrito($event)">
+          </app-tarjeta-producto>
+        </div>
+      }
+    </div>
+  </section>
+</div>

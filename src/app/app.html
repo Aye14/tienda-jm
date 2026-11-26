@@ -1,9 +1,94 @@
-<app-navbar></app-navbar>
+@if (!esInicio()) {
+  <app-navbar></app-navbar>
+} @else {
+  <!-- Botón flotante de 3 puntos -->
+  <div class="position-fixed top-0 end-0 p-3" style="z-index: 1060;">
+    <button
+      type="button"
+      class="btn btn-dark rounded-circle shadow-lg d-flex align-items-center justify-content-center"
+      style="width: 46px; height: 46px;"
+      (click)="alternarMenuInicio()"
+      aria-label="Abrir menú de navegación"
+      title="Menú">
+      <span class="fs-5 lh-1 fw-bold">{{ menuInicioAbierto() ? '✕' : '⋮' }}</span>
+    </button>
+  </div>
+
+  <!-- Menú flotante superpuesto encima de todo -->
+  @if (menuInicioAbierto()) {
+    <div
+      class="position-fixed top-0 start-0 w-100 h-100"
+      style="background: rgba(0, 0, 0, 0.35); z-index: 1050;"
+      (click)="cerrarMenuInicio()">
+    </div>
+
+    <div
+      class="position-fixed top-0 end-0 mt-5 me-3 pt-2"
+      style="z-index: 1055; min-width: 240px; max-width: 90vw;">
+      <div class="card shadow-lg border-0 overflow-hidden">
+        <div class="card-header bg-dark text-white fw-bold py-2">
+          Tienda J&amp;M — Menú
+        </div>
+        <div class="list-group list-group-flush">
+          <a
+            routerLink="/inicio"
+            routerLinkActive="active"
+            (click)="cerrarMenuInicio()"
+            class="list-group-item list-group-item-action">
+            Inicio
+          </a>
+          <a
+            routerLink="/catalogo"
+            routerLinkActive="active"
+            (click)="cerrarMenuInicio()"
+            class="list-group-item list-group-item-action">
+            Catálogo
+          </a>
+          <a
+            routerLink="/computadoras"
+            routerLinkActive="active"
+            (click)="cerrarMenuInicio()"
+            class="list-group-item list-group-item-action">
+            Computadoras
+          </a>
+          <a
+            routerLink="/celulares"
+            routerLinkActive="active"
+            (click)="cerrarMenuInicio()"
+            class="list-group-item list-group-item-action">
+            Celulares
+          </a>
+          <a
+            routerLink="/carrito"
+            routerLinkActive="active"
+            (click)="cerrarMenuInicio()"
+            class="list-group-item list-group-item-action">
+            Carrito
+          </a>
+          <a
+            routerLink="/registro-pedido"
+            routerLinkActive="active"
+            (click)="cerrarMenuInicio()"
+            class="list-group-item list-group-item-action">
+            Registro Pedido
+          </a>
+          <a
+            routerLink="/pedidos"
+            routerLinkActive="active"
+            (click)="cerrarMenuInicio()"
+            class="list-group-item list-group-item-action">
+            Historial Pedidos
+          </a>
+        </div>
+      </div>
+    </div>
+  }
+}
 
 <main>
   <router-outlet></router-outlet>
 </main>
 
 <footer style="text-align: center; padding: 20px; margin-top: 40px; border-top: 1px solid #e2e8f0; color: #64748b;">
-  Tienda J&M — Venta de artículos de computadoras y accesorios de celulares
+  Tienda J&amp;M — Venta de artículos de computadoras y accesorios de celulares
 </footer>
