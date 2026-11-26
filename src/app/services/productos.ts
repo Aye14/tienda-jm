@@ -104,6 +104,36 @@ export class ProductosService {
       descripcion: 'Bordes reforzados y acabado antideslizante para protección diaria.',
       imagen: 'img/funda-celular.jpg',
       enOferta: false
+    },
+    {
+      id: 7,
+      nombre: 'Cable HDMI 2.0 Alta Velocidad 4K',
+      categoria: 'Accesorios',
+      precio: 35,
+      stock: 18,
+      descripcion: 'Cable HDMI para video y audio en alta definición en TV, monitor o consola.',
+      imagen: 'img/cable-hdmi.jpg',
+      enOferta: false
+    },
+    {
+      id: 8,
+      nombre: 'Adaptador Wi-Fi USB Dual Band',
+      categoria: 'Accesorios',
+      precio: 60,
+      stock: 10,
+      descripcion: 'Receptor inalámbrico USB 2.4GHz / 5GHz para PC de escritorio y laptops.',
+      imagen: 'img/adaptador-wifi.jpg',
+      enOferta: true
+    },
+    {
+      id: 9,
+      nombre: 'Mando Inalámbrico PS4 DualShock',
+      categoria: 'Accesorios',
+      precio: 180,
+      stock: 6,
+      descripcion: 'Control inalámbrico compatible con PlayStation 4 y PC con vibración dual.',
+      imagen: 'img/mando-ps4.jpg',
+      enOferta: true
     }
   ];
 
@@ -201,6 +231,15 @@ export class ProductosService {
           }
           return item;
         });
+
+        for (const inicial of this.productosIniciales) {
+          const yaExiste = actualizada.some(p => p.id === inicial.id);
+          if (!yaExiste) {
+            const nuevo = { ...inicial };
+            store.put(nuevo);
+            actualizada.push(nuevo);
+          }
+        }
 
         resolve(actualizada);
       };
