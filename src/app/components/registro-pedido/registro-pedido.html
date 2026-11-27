@@ -25,6 +25,7 @@
               class="form-control"
               placeholder="Ej. Ayelén Saravia"
               [(ngModel)]="clienteNombre"
+              (ngModelChange)="guardarBorrador()"
             />
           </div>
 
@@ -35,6 +36,7 @@
               class="form-control"
               placeholder="Ej. 72345678"
               [(ngModel)]="clienteTelefono"
+              (ngModelChange)="guardarBorrador()"
             />
           </div>
 
@@ -45,6 +47,7 @@
               class="form-control"
               placeholder="Ej. Calle Bolívar #123"
               [(ngModel)]="clienteDireccion"
+              (ngModelChange)="guardarBorrador()"
             />
           </div>
 
@@ -55,6 +58,7 @@
               rows="2"
               placeholder="Referencia o horario de entrega..."
               [(ngModel)]="notas"
+              (ngModelChange)="guardarBorrador()"
             ></textarea>
           </div>
 

@@ -15,6 +15,8 @@ export class RegistroPedido implements OnInit {
   private router = inject(Router);
   private cdr = inject(ChangeDetectorRef);
 
+  private readonly BORRADOR_KEY = 'tienda_jm_borrador_pedido_v1';
+
   productosDisponibles: Producto[] = [];
   itemsCarrito: ItemCarrito[] = [];
   itemsDirectos: ItemCarrito[] = [];
@@ -31,7 +33,36 @@ export class RegistroPedido implements OnInit {
   guardando = false;
 
   async ngOnInit(): Promise<void> {
+    this.cargarBorrador();
     await this.cargarDatos();
+  }
+
+  guardarBorrador(): void {
+    const borrador = {
+      clienteNombre: this.clienteNombre,
+      clienteTelefono: this.clienteTelefono,
+      clienteDireccion: this.clienteDireccion,
+      notas: this.notas
+    };
+    localStorage.setItem(this.BORRADOR_KEY, JSON.stringify(borrador));
+  }
+
+  cargarBorrador(): void {
+    try {
+      const raw = localStorage.getItem(this.BORRADOR_KEY);
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      this.clienteNombre = data.clienteNombre ?? '';
+      this.clienteTelefono = data.clienteTelefono ?? '';
+      this.clienteDireccion = data.clienteDireccion ?? '';
+      this.notas = data.notas ?? '';
+    } catch {
+      // Si el JSON está corrupto, ignoramos sin romper la pantalla
+    }
+  }
+
+  limpiarBorrador(): void {
+    localStorage.removeItem(this.BORRADOR_KEY);
   }
 
   async cargarDatos(): Promise<void> {
@@ -142,6 +173,7 @@ export class RegistroPedido implements OnInit {
         return;
       }
 
+      this.limpiarBorrador();
       alert(`Pedido #${res.pedidoId ?? ''} registrado correctamente.`);
       this.router.navigate(['/pedidos']);
     } catch {
