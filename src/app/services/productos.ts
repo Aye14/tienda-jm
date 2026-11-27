@@ -224,10 +224,13 @@ export class ProductosService {
 
         const actualizada = lista.map(item => {
           const inicial = this.productosIniciales.find(p => p.id === item.id);
-          if (inicial && (!item.imagen || item.imagen.startsWith('assets/'))) {
-            const corregido = { ...item, imagen: inicial.imagen };
-            store.put(corregido);
-            return corregido;
+          if (inicial) {
+            const sincronizado: Producto = {
+              ...inicial,
+              stock: typeof item.stock === 'number' ? item.stock : inicial.stock
+            };
+            store.put(sincronizado);
+            return sincronizado;
           }
           return item;
         });
